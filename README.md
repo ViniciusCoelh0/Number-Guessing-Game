@@ -1,18 +1,21 @@
 # 🎯 Number Guessing Game
 
-A command-line number guessing game developed in **Python**, where players must guess a randomly generated number between 1 and 100.
+A simple command-line number guessing game developed in **Python**, where players must guess a randomly generated number between 1 and 100.
 
-This project was developed as part of the [Number Guessing Game Challenge](https://roadmap.sh/projects/number-guessing-game) from **roadmap.sh**, with the goal of practicing Python fundamentals, loops, conditional statements, and game logic.
+This project was developed as part of the [Number Guessing Game Challenge](https://roadmap.sh/projects/number-guessing-game) from **roadmap.sh**.
+
+The main goal is to practice Python fundamentals, including functions, loops, conditional statements, random number generation, and code organization.
 
 ## 🚀 Features
 
-- **Random Number Generation:** Generates a random number between 1 and 100 for each round.
-- **Three Difficulty Levels:** Choose between Easy, Medium, and Hard.
-- **Hints:** Receive feedback indicating whether the secret number is higher or lower than your guess.
-- **Attempt Tracking:** Counts the number of guesses made during each round.
-- **High Score System:** Tracks the fewest attempts needed to win at each difficulty level.
-- **Multiple Rounds:** Play as many rounds as you want without restarting the program.
-- **Exit Option:** Leave the game through the main menu.
+- **Random Number Generation:** Generates a new random number between 1 and 100 for each round.
+- **Three Difficulty Levels:** Easy, Medium, and Hard.
+- **Hint System:** Provides feedback indicating whether the secret number is higher or lower than the player's guess.
+- **Attempt Counter:** Tracks the number of attempts made during each round.
+- **High Score System:** Records the fewest attempts needed to win in each difficulty level.
+- **Multiple Rounds:** Allows players to play repeatedly without restarting the program.
+- **Exit Option:** Players can leave the game through the main menu.
+- **Modular Code:** Uses reusable functions to organize the game logic and reduce code duplication.
 
 ## 🎮 Difficulty Levels
 
@@ -22,16 +25,17 @@ This project was developed as part of the [Number Guessing Game Challenge](https
 | 🟡 Medium | 5 |
 | 🔴 Hard | 3 |
 
-Each difficulty level generates a new random number between 1 and 100.
+Each difficulty level uses the same game logic, with a different maximum number of attempts.
 
 ## 🛠️ Technologies Used
 
 - **Python 3.10+**
-- **random module** — Random number generation.
-- **match-case** — Difficulty selection and menu navigation.
-- **Loops (`while`, `for`)** — Game flow and attempt management.
-- **Conditional statements (`if`, `elif`, `else`)** — Guess verification and ranking logic.
-- **Lists** — High score storage.
+- **random module** — Generates random numbers.
+- **Functions** — Organize reusable game logic.
+- **match-case** — Handles menu navigation.
+- **Loops (`while`, `for`)** — Control game execution.
+- **Conditional statements** — Evaluate guesses and update records.
+- **Lists** — Store high scores for each difficulty.
 
 No external dependencies are required.
 
@@ -59,7 +63,7 @@ Make sure Python 3.10 or higher is installed.
 
 ## 💻 How to Play
 
-When you start the game, the following menu will appear:
+When the game starts, the following menu appears:
 
 ```text
 Welcome to the Number Guessing Game!
@@ -73,7 +77,7 @@ Please select the difficulty level:
     5. Leave
 ```
 
-Select a difficulty level and enter your guesses until you find the correct number or run out of attempts.
+Select a difficulty level and enter your guesses.
 
 ### Example Gameplay
 
@@ -93,7 +97,7 @@ Congratulations! You guessed the correct number in 3 attempts.
 
 ### Losing a Round
 
-If you run out of attempts, the game reveals the correct number.
+If the player runs out of attempts, the correct number is revealed.
 
 ```text
 Sorry! You didn't guess the correct number.
@@ -104,9 +108,9 @@ After each round, the game returns to the main menu.
 
 ## 🏆 High Score System
 
-The game includes a ranking system that tracks the best performance for each difficulty level.
+The game tracks the best performance for each difficulty level.
 
-A player's best score is determined by the **fewest attempts needed to guess the correct number**.
+The best score is determined by the **fewest attempts needed to guess the correct number**.
 
 ### Example Scoreboard
 
@@ -122,34 +126,80 @@ BEST ATTEMPTS SCOREBOARD
 
 ### Ranking Rules
 
-- Each difficulty level has its own record.
+- Each difficulty level has an independent record.
 - Only successful rounds count toward the ranking.
 - A lower number of attempts represents a better score.
 - Losing a round does not affect existing records.
 - Scores are stored in memory and reset when the program closes.
 - A score of `0` indicates that no successful round has been recorded.
 
+## 🧩 Code Structure
+
+The project uses functions to separate responsibilities and improve code readability.
+
+| Function | Description |
+|----------|-------------|
+| `starting()` | Generates and returns a random number between 1 and 100. |
+| `play()` | Controls the game loop, tracks attempts, and checks win/loss conditions. |
+| `atempet()` | Provides hints based on the player's guess. |
+| `result()` | Displays the victory message and updates the high score. |
+| `lose()` | Displays the defeat message and reveals the correct number. |
+
+### Game Flow
+
+```text
+Start
+  |
+  v
+Main Menu
+  |
+  +-- Easy (10 attempts)
+  |
+  +-- Medium (5 attempts)
+  |
+  +-- Hard (3 attempts)
+  |       |
+  |       v
+  |   Generate Random Number
+  |       |
+  |       v
+  |   Start Game
+  |       |
+  |       v
+  |   Enter Guess
+  |       |
+  |       +-- Correct --> Update Ranking
+  |       |
+  |       +-- Incorrect --> Show Hint
+  |                             |
+  |                             +-- Attempts left --> Try Again
+  |                             |
+  |                             +-- No attempts --> Game Over
+  |
+  +-- Ranking --> Display Best Scores
+  |
+  +-- Leave --> Exit Program
+```
+
 ## 📚 What I Learned
 
-Through this project, I practiced:
+During the development of this project, I practiced:
 
 - Generating random numbers using `randint()`.
-- Implementing interactive menus with `match-case`.
-- Using `while` and `for` loops to control program execution.
-- Managing conditional logic with `if`, `elif`, and `else`.
-- Tracking attempts using variables.
-- Storing and updating records using lists.
-- Implementing replay functionality.
-- Using `break` to control loops.
-- Organizing a command-line application.
-
-
+- Creating and calling functions with parameters.
+- Understanding local variables and function scope.
+- Working with mutable data structures such as lists.
+- Using `match-case` for menu navigation.
+- Controlling program execution with loops and `break`.
+- Implementing a high score system.
+- Refactoring repetitive code into reusable functions.
+- Separating responsibilities to improve maintainability.
 
 ## 🔗 Project Reference
 
-This project is based on the **Number Guessing Game** challenge from roadmap.sh.
+This project was developed based on the **Number Guessing Game** challenge from roadmap.sh.
 
-**Challenge URL:** https://roadmap.sh/projects/number-guessing-game
+**Challenge:** https://roadmap.sh/projects/number-guessing-game
 
 ## 📄 License
 
